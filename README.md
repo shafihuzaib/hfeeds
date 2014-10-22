@@ -1,4 +1,4 @@
-hfeeds
+hFeeds
 ======
 
 hFeeds is a simple & easy to use RSS feed generator for web-pages.
@@ -28,3 +28,8 @@ And same can be extracted from a web-page using a repeatable pattern. The patter
 {hN} variables
 ==============
 For each {h} used in repeatable pattern, you can use {hN} (where N is 1,2,3...) for substitution in Feed Item Configuration.
+
+Author
+============
+Huzaib Shafi
+Website: http://www.shafihuzaib.com
