@@ -1,0 +1,11 @@
+TODO activities sorted priority-wise:
+
+Separate XML files from Feed Creation Files
+    XML files to be static in nature.
+    XML files should be updated only upon the arrival of new content.
+    GUID of old items should not change on refresh.
+Feature to Rename XML files to user-friendly names.
+Optimize for CRON jobs.
+Introduction of AJAX/jQuery to simplify & aggregate the feed creation to a single page.
+Introduce feed categorization with respect to User Authentication.
+Admin Section to Manage all feed files & users.
