@@ -28,8 +28,10 @@
  * THE SOFTWARE.
  */
 include_once 'header.php';
+include_once 'db.php';
 
-
+$feedTitle = $_POST['feedTitle'];
+$feedDesc = $_POST['feedDesc'];
 $url = $_POST['url'];
 $page = str_replace('\n', ' ', file_get_contents_utf8($url));
 $hCount = 0;
@@ -41,17 +43,31 @@ echo '<b>Your RSS Feed file is <a href="./xml/' . $filename . '.xml">' . $filena
 
 fputs($file, '<?php '
         . 'include_once("./default.php");'
-        . '$channel->addChild("title","' . $_POST['feedTitle'] . '");'
-        . '$channel->addChild("description","' . $_POST['feedDesc'] . '");'
+        . '$channel->addChild("title","' . $feedTitle . '");'
+        . '$channel->addChild("description","' . $feedDesc . '");'
         . '$channel->addChild("link","' . $url . '");'
         . '$url="' . $url . '";'
         . '$page = str_replace("\n", " ", file_get_contents_utf8($url));'
 );
 
-$itTitle = $_POST['title'];
-$itDescription = $_POST['description'];
-$itLink = $_POST['link'];
-$itDate = $_POST['date'];
+$itTitle = cleanItemPat($_POST['title']);
+$itDescription = cleanItemPat($_POST['description']);
+$itLink = cleanItemPat($_POST['link']);
+$itDate = (isset($_POST['date']) && $_POST['date'] != '') ? cleanItemPat($_POST['date']) : date("d M Y - h:i:s A");
+
+$g1 = (isset($_POST['out_pattern1'])) ? cleanPat(htmlentities($_POST['out_pattern1']), 1) : "";
+$r1 = (isset($_POST['out_pattern1'])) ? cleanPat(htmlentities($_POST['pattern1'])) : "";
+
+$g2 = (isset($_POST['out_pattern1'])) ? cleanPat(htmlentities($_POST['out_pattern1']), 1) : "";
+$r2 = (isset($_POST['out_pattern1'])) ? cleanPat(htmlentities($_POST['pattern1'])) : "";
+
+$g3 = (isset($_POST['out_pattern1'])) ? cleanPat(htmlentities($_POST['out_pattern1']), 1) : "";
+$r3 = (isset($_POST['out_pattern1'])) ? cleanPat(htmlentities($_POST['pattern1'])) : "";
+
+$g4 = (isset($_POST['out_pattern1'])) ? cleanPat(htmlentities($_POST['out_pattern1']), 1) : "";
+$r4 = (isset($_POST['out_pattern1'])) ? cleanPat(htmlentities($_POST['pattern1'])) : "";
+
+dbSave($filename, $feedTitle, $feedDesc, $url, $itTitle, $itDescription, $itLink, $itDate, $g1,$r1, $g2, $r2, $g3, $r3, $g4, $r4);
 
 echo '<div align="center"><div id="raw-data">';
 if ($_POST['out_pattern1'] != '' and $_POST['pattern1'] != '') {
@@ -64,7 +80,8 @@ if ($_POST['out_pattern1'] != '' and $_POST['pattern1'] != '') {
             . '";print_xml_item(process(1), $itTitle, $itDescription, $itLink, $itDate,$channel);';
     fputs($file, $str);
     $match = process(1);
-
+    
+    
     print_xml_item($match, $itTitle, $itDescription, $itLink, $itDate);
 }
 if ($_POST['out_pattern2'] != '' and $_POST['pattern2'] != '') {
@@ -110,6 +127,7 @@ if ($_POST['out_pattern4'] != '' and $_POST['pattern4'] != '') {
 fputs($file, 'echo $xml->asXML(); ?>');
 fclose($file);
 echo '</div></div>';
+
 function process($index) {
     global $page, $file;
 
@@ -211,13 +229,13 @@ function cleanPat($pattern, $flag = 0) {
 
 function print_xml_item($match, $itTitle, $itDescription, $itLink, $itDate) {
     $itCount = count($match);
-
+/*
     $itTitle = cleanItemPat($itTitle);
     $itDescription = cleanItemPat($itDescription);
     $itLink = cleanItemPat($itLink);
     if ($itDate != '')
         $itDate = cleanItemPat($itDate);
-
+*/
     $tmpdate = date("d M Y - h:i:s A");
     $titleCount = count($itTitle);
     $descCount = count($itDescription);
