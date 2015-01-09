@@ -31,10 +31,11 @@
 $filename = uniqid("h");
 include_once 'header.php';
 ?>
+
 <form method="POST" action="prepat.php?file=<?php echo $filename; ?>">
-    <input size="80" placeholder="Enter url" type="text" name = "url">
-    <input size="10" placeholder="Encoding Type" type="text" name = "encoding">
-    <input type="submit">
+    <input size="80" placeholder="Enter url" type="text" name = "url" />
+    <input size="10" placeholder="Encoding Type" type="text" name = "encoding" />
+    <input type="submit" />
 
 
 </form>
