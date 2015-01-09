@@ -37,4 +37,5 @@ Huzaib Shafi
 Features
 ========
 1. Create RSS Feeds for any web-page.
-2. Select upto 4 sections from a web-page to choose items for, even if the items have different pattern with respect to sections.
+2. Easy to use.
+3. Select upto 4 sections from a web-page to choose items for, even if the items have different pattern with respect to sections.
