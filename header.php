@@ -1,6 +1,5 @@
 <?php
-
-/* 
+/*
 
  * Author: Huzaib Shafi
  * Author Website: http://www.shafihuzaib.com
@@ -31,13 +30,38 @@
 <html>
     <head>
         <title>hFeeds - RSS Feed Generator for Web Pages</title>
-        <link rel="stylesheet" type="text/css" href="./style.css"></link>
+        <link rel="stylesheet" type="text/css" href="../style.css"></link>
+        <script type="text/javascript" src="../js/jquery.min.js"></script>
+        <script type="text/javascript">
+            
+            function submitForm(id, url, target, loading) {
+
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    dataType: "html",
+                    data: $(id).serialize(),
+                    beforeSend: function() {
+                        $(loading).show();
+                    },
+                    success: function(response) {
+                        $(target).html(response);
+                        $(loading).hide();
+                        //$("#h_form").hide();
+
+                    }
+                })
+                return false;
+           }
+
+        </script>
+
     </head>
     <body>
         <div class="head">
-            <div id="logo"><img src='./images/hfeeds_logo.png' width='100px' /></div>
+            <div id="logo"><img src='../images/hfeeds_logo.png' width='100px' /></div>
             <div style="display:inline-block;">
-        <div id="head-title">hFeeds</div>
-        <div id="class">An easy to use RSS Feed Generator</div>
-        </div>
+                <div id="head-title">hFeeds</div>
+                <div id="class">An easy to use RSS Feed Generator</div>
+            </div>
         </div>
