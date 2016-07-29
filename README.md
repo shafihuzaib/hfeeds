@@ -7,6 +7,14 @@ As a user, you'll have to remember only two variables {h} & {i}, where
 {h} => have it (use the content specified by this variable)
 {i} => ignore it
 
+IMPORTANT INFORMATION
+=============================
+The xml directory contains all the generated xml files, which actually contain PHP code. Hence all such xml files need to be parsed using PHP Handler. The necessary configuration is done in `.htaccess` file in the said directory. If you experience `500 Internal Server Error` while executing the xml files, please change the contents of .htaccess file to
+
+`AddHandler x-httpd-php .xml` 
+
+Please read [this article](http://www.shafihuzaib.com/developer-admin/parse-html-as-php-htaccess-way-different-ways) for more information about executing files with non-php extension using php handler.
+
 USAGE
 ==============================
 1. Enter url of the web-page you need to generate feed for & optionally an encoding type.
