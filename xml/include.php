@@ -1,11 +1,9 @@
 <?php
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 function process($index) {
     global $page, $file;
 
@@ -132,6 +130,7 @@ function print_xml_item($match, $itTitle, $itDescription, $itLink, $itDate, $cha
 
             $title = str_replace('{' . $itTitle[$i] . '}', $match[$j][$itTitle[$i]], $title);
         }
+ 
         //For Description
         for ($i = 0; $i < $descCount; $i++) {
 
@@ -152,9 +151,9 @@ function print_xml_item($match, $itTitle, $itDescription, $itLink, $itDate, $cha
         $item->addChildWithCDATA('description', $description);
         $item->addChild('link', $link);
         $item->addChild('pubDate', $date);
-        $guid = $item->addChild('guid',com_create_guid());
+        $guid = $item->addChild('guid',generateGUID());
         $guid->addAttribute('isPermalink','false');
-        //echo $j . ' ---= ' . $title . '   =   ' . $description . '   =   ' . $link . '   =   ' . $date . '<br>';
+         //echo $j . ' ---= ' . $title . '   =   ' . $description . '   =   ' . $link . '   =   ' . $date . '<br>';
     }
     // echo '<br>------END-----<br>';
 }
@@ -193,3 +192,23 @@ class SimpleXMLExtended extends SimpleXMLElement {
     }
 
 }
+
+/* Create New GUID */
+function generateGUID(){
+    if (function_exists('com_create_guid')){
+        return com_create_guid();
+    }
+    else {
+        mt_srand((double)microtime()*10000);//optional for php 4.2.0 and up.
+        $charid = strtoupper(md5(uniqid(rand(), true)));
+        $hyphen = chr(45);// "-"
+        $uuid = chr(123)// "{"
+            .substr($charid, 0, 8).$hyphen
+            .substr($charid, 8, 4).$hyphen
+            .substr($charid,12, 4).$hyphen
+            .substr($charid,16, 4).$hyphen
+            .substr($charid,20,12)
+            .chr(125);// "}"
+        return $uuid;
+    }
+}?>
