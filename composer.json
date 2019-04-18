@@ -1,5 +1,13 @@
 {
+    "name": "shafihuzaib/hfeeds",
+    "description": "Open Source RSS Feed Generator",
+    "authors": [
+        {
+            "name": "Huzaib Shafi",
+            "email": "shafihuzaib@gmail.com"
+        }
+    ],
     "require": {
-        "ext-mbstring" : ""
+        "ext-mbstring" : "*"
     }
 }
