@@ -1,0 +1,7 @@
+{
+  "name": "hFeeds",
+  "description": "An easy to use RSS Feed Generator - Open Source Alternative to feed43.com",
+  "repository": "https://github.com/shafihuzaib/hfeeds",
+  "logo": "https://raw.githubusercontent.com/shafihuzaib/hfeeds/master/images/hfeeds_logo.png",
+  "keywords": ["php", "rss", "feed generator", "feeds"]
+}
