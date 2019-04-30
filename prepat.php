@@ -39,10 +39,8 @@ if ($_POST['encoding'] == '') {
 /* Function to get file contents from a given url & return content in UTF-8 */
 
 function file_get_contents_utf8($url, $encoding) {
-
-
     $content = file_get_contents($url);
-    return htmlentities(str_replace('&nbsp;', ' ', mb_convert_encoding($content, 'HTML-ENTITIES', $encoding)));
+    return preg_replace('/[\n]+/', '<br>', str_replace('&nbsp;', ' ', mb_convert_encoding(htmlspecialchars($content), 'UTF-8', $encoding)));
 }
 ?>
 <div align="center">

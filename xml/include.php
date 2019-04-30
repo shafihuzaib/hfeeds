@@ -169,9 +169,7 @@ function cleanItemPat($item) {
 /*Function to get file contents from a given url & return content in UTF-8*/
 function file_get_contents_utf8($url) { 
      $content = file_get_contents($url); 
-      return htmlentities(str_replace('&nbsp;', ' ', 
-           mb_convert_encoding($content, 'HTML-ENTITIES', 
-                   mb_detect_encoding($content))));
+      return str_replace('&nbsp;', ' ', htmlspecialchars(mb_convert_encoding($content, 'UTF-8', $content)));
 } 
 
 

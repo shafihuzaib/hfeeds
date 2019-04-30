@@ -36,7 +36,7 @@ $hCount = 0;
 $matchFinal = array();
 
 $filename = $_GET['file'];
-$file = fopen('./xml/' . $filename . '.xml', w);
+$file = fopen('./xml/' . $filename . '.xml', 'w');
 echo '<b>Your RSS Feed file is <a href="./xml/' . $filename . '.xml">' . $filename . '.xml' . '</a></b><br>';
 
 fputs($file, '<?php '
@@ -264,7 +264,7 @@ function print_xml_item($match, $itTitle, $itDescription, $itLink, $itDate) {
 
 function file_get_contents_utf8($url) {
     $content = file_get_contents($url);
-    return htmlentities(str_replace('&nbsp;', ' ', mb_convert_encoding($content, 'HTML-ENTITIES', mb_detect_encoding($content))));
+    return preg_replace('/[\n]+/', '<br>', str_replace('&nbsp;', ' ', mb_convert_encoding(htmlspecialchars($content), 'UTF-8', $encoding)));
 }
 
 /* A function to return array containing h1, h2, h3.. for given item */
